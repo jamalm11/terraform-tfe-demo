@@ -39,6 +39,19 @@ resource "google_compute_subnetwork" "demo" {
   network       = google_compute_network.demo.id
 }
 
+resource "google_compute_firewall" "allow_http" {
+  name    = "tfe-demo-allow-http"
+  network = google_compute_network.demo.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["web"]
+}
+
 output "vpc_name" {
   value = google_compute_network.demo.name
 }
