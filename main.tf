@@ -33,12 +33,6 @@ resource "google_compute_subnetwork" "demo" {
   network       = google_compute_network.demo.id
 }
 
-resource "google_compute_subnetwork" "demo" {
-  name          = "tfe-demo-subnet"
-  ip_cidr_range = "10.200.0.0/24"  # ← Change de 10.100 à 10.200
-  region        = "us-central1"
-  network       = google_compute_network.demo.id
-}
 
 output "vpc_name" {
   value = google_compute_network.demo.name
