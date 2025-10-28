@@ -22,13 +22,13 @@ provider "google" {
 }
 
 resource "google_compute_network" "demo" {
-  name                    = "tfe-demo-vpc"
+  name                    = "tfe-demo-vpc-vcs"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "demo" {
-  name          = "tfe-demo-subnet"
-  ip_cidr_range = "10.100.0.0/24"
+  name          = "tfe-demo-subnet-vcs"
+  ip_cidr_range = "10.200.0.0/24"
   region        = "us-central1"
   network       = google_compute_network.demo.id
 }
