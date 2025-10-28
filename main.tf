@@ -4,7 +4,7 @@ terraform {
     organization = "jamal-demo"
     
     workspaces {
-      name = "demo-gcp-network"
+      name = "terraform-tfe-demo"
     }
   }
   
