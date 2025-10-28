@@ -1,9 +1,10 @@
+# # Infrastructure demo for TFE interview
 terraform {
   cloud {
     organization = "jamal-demo"
     
     workspaces {
-      name = "demo-gcp-network"
+      name = "terraform-tfe-demo"
     }
   }
   
@@ -21,23 +22,17 @@ provider "google" {
 }
 
 resource "google_compute_network" "demo" {
-  name                    = "tfe-demo-vpc"
+  name                    = "tfe-demo-vpc-vcs"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "demo" {
-  name          = "tfe-demo-subnet"
-  ip_cidr_range = "10.100.0.0/24"
+  name          = "tfe-demo-subnet-vcs"
+  ip_cidr_range = "10.200.0.0/24"
   region        = "us-central1"
   network       = google_compute_network.demo.id
 }
 
-resource "google_compute_subnetwork" "demo" {
-  name          = "tfe-demo-subnet"
-  ip_cidr_range = "10.200.0.0/24"  # ← Change de 10.100 à 10.200
-  region        = "us-central1"
-  network       = google_compute_network.demo.id
-}
 
 resource "google_compute_firewall" "allow_http" {
   name    = "tfe-demo-allow-http"
