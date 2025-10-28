@@ -33,6 +33,7 @@ resource "google_compute_subnetwork" "demo" {
   network       = google_compute_network.demo.id
 }
 
+# Firewall rule for web servers
 
 resource "google_compute_firewall" "allow_http" {
   name    = "tfe-demo-allow-http"
